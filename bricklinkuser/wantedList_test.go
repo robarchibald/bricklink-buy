@@ -4,17 +4,15 @@ import (
 	"encoding/json"
 	"strings"
 	"testing"
-
-	"github.com/andrewarchi/brick-apis/credentials"
 )
 
 func TestCreateWantedList(t *testing.T) {
 	t.SkipNow()
-	c, err := NewClient(&credentials.BrickLinkUser{Username: username, Password: password})
+	c, err := NewClient()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if err := c.Login(); err != nil {
+	if err := c.Login(username, password); err != nil {
 		t.Fatal(err)
 	}
 	id, err := c.CreateWantedList("test2", "test2 description")

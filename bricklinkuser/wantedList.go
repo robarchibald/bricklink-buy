@@ -15,6 +15,18 @@ type ManageWantedListReturn struct {
 	ProcessingTime int    `json:"procssingTime"`
 }
 
+// EditWantedItemRequest is used to update a single item in a wanted list
+type EditWantedItemRequest struct {
+	ItemID          int             `json:"itemID"`
+	ColorID         int             `json:"colorID"`
+	WantedQty       int             `json:"wantedQty"`
+	WantedQtyFilled int             `json:"wantedQtyFilled"`
+	WantedCondition WantedCondition `json:"wantedNew"`
+	WantedNotify    WantedNotify    `json:"wantedNotify"`
+	WantedRemarks   string          `json:"wantedRemarks"` // note the "s" which is why the WantedItem struct cannot be used for the request
+	WantedPrice     float64         `json:"wantedPrice"`
+}
+
 // CreateWantedList is used to create a Bricklink wanted list
 func (c *Client) CreateWantedList(name, description string) (int, error) {
 	resp, err := c.client.PostForm(cloneBase+"/wanted/editList.ajax", getManageWantedListQuery(name, description, "C"))

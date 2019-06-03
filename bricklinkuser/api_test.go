@@ -14,3 +14,15 @@ func TestGetError(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestGetWantedList(t *testing.T) {
+	t.SkipNow()
+	c, err := NewClient()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := c.Login(username, password); err != nil {
+		t.Fatal(err)
+	}
+	t.Error(c.GetWantedList(2005021))
+}
